@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Telegram media rotate
-// @description  Addding button to rotate images and videos in telegram web
+// @description  Adds button to rotate images and videos in telegram web
 // @match        *://web.telegram.org/*
 // @grant        none
 // ==/UserScript==
