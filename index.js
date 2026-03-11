@@ -1,22 +1,21 @@
 // ==UserScript==
-// @name         Rotate Telegram Web
-// @namespace    http://tampermonkey.net/
-// @version      2.0
-// @description  Addding button to rotate images and videos
-// @author       Pink team
-// @match        https://web.telegram.org/*
+// @name         Telegram media rotate
+// @description  Addding button to rotate images and videos in telegram web
+// @match        *://web.telegram.org/*
 // @grant        none
 // ==/UserScript==
 
 (function () {
   "use strict";
 
+  const ROTATE_BUTTON_ID = "rotate-button";
+
   function createButton() {
     const button = document.createElement("button");
 
     button.classList.add("btn-icon");
 
-    button.id = "rotate-button";
+    button.id = ROTATE_BUTTON_ID;
     button.innerHTML = `
         <span
             class="tgico button-icon" 
@@ -47,7 +46,7 @@
       const mover = document.querySelector(".media-viewer-mover");
 
       const videoThumbnail = document.querySelector(
-        ".media-viewer-aspecter .canvas-thumbnail"
+        ".media-viewer-aspecter .canvas-thumbnail",
       );
 
       let currentRotation = parseInt(mediaElement.dataset.rotation) || 0;
@@ -100,14 +99,15 @@
   function addButtonToMediaViewerButtons() {
     const mediaViewerButtons = document.querySelector(".media-viewer-buttons");
 
-    if (mediaViewerButtons && !document.querySelector("#rotate-button")) {
-      const downloadButton = mediaViewerButtons.querySelectorAll(".btn-icon")[2];
+    if (mediaViewerButtons && !document.querySelector(`#${ROTATE_BUTTON_ID}`)) {
+      const downloadButton =
+        mediaViewerButtons.querySelectorAll(".btn-icon")[2];
 
       downloadButton.after(createButton());
     }
 
     const mediaViewerAspecter = document.querySelector(
-      ".media-viewer-aspecter img"
+      ".media-viewer-aspecter img",
     );
 
     if (mediaViewerAspecter) {
@@ -127,7 +127,7 @@
     }
 
     const videoThumbnail = document.querySelector(
-      ".media-viewer-aspecter .canvas-thumbnail"
+      ".media-viewer-aspecter .canvas-thumbnail",
     );
 
     if (videoThumbnail) {
