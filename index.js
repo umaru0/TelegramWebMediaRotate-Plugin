@@ -96,7 +96,7 @@
     return button;
   }
 
-  function addButtonToMediaViewerButtons() {
+  function tryAddButton() {
     const mediaViewerButtons = document.querySelector(".media-viewer-buttons");
 
     if (mediaViewerButtons && !document.querySelector(`#${ROTATE_BUTTON_ID}`)) {
@@ -136,10 +136,10 @@
   }
 
   const observer = new MutationObserver(() => {
-    addButtonToMediaViewerButtons();
+    tryAddButton();
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
 
-  addButtonToMediaViewerButtons();
+  tryAddButton();
 })();
