@@ -16,7 +16,7 @@
     button.classList.add("btn-icon");
 
     button.id = ROTATE_BUTTON_ID;
-    button.title = "Rotate Media";
+    button.title = "Rotate";
     button.innerHTML = `
       <span
         class="tgico button-icon" 
