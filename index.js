@@ -40,13 +40,11 @@
       const aspecter = document.querySelector(".media-viewer-aspecter");
       if (!aspecter) return;
 
-      
       aspecter.style.setProperty("overflow", "visible", "important");
 
       const mover = document.querySelector(".media-viewer-mover");
       if (mover) mover.style.setProperty("overflow", "visible", "important");
 
-      
       const visualElements = aspecter.querySelectorAll("img, video, canvas");
       if (visualElements.length === 0) return;
 
@@ -57,27 +55,21 @@
 
       let scale = 1;
 
-      
       if (currentRotation % 180 !== 0) {
-       
         let baseW = aspecter.offsetWidth;
         let baseH = aspecter.offsetHeight;
 
-       
         let rotatedW = baseH;
         let rotatedH = baseW;
 
-
-        let maxW = window.innerWidth * 0.90;
+        let maxW = window.innerWidth * 0.9;
         let maxH = window.innerHeight * 0.73;
 
-        
         if (rotatedW > maxW || rotatedH > maxH) {
           scale = Math.min(maxW / rotatedW, maxH / rotatedH);
         }
       }
 
-     
       visualElements.forEach((el) => {
         el.style.transform = `rotate(${currentRotation}deg) scale(${scale})`;
         el.style.transition = "transform 0.3s ease";
